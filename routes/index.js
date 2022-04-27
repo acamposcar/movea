@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-/* GET home page. */
+/* Redirect to movies */
 router.get('/', (req, res, next) => {
   res.redirect('/movies');
 });
