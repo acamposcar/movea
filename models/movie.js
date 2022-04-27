@@ -11,6 +11,7 @@ const MovieSchema = new Schema(
     },
     category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
     image: { type: String },
+    summary: { type: String, required: true },
   },
 );
 
