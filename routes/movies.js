@@ -10,14 +10,14 @@ router.get('/', movieController.index);
 // GET request for one movie
 router.get('/:id', movieController.getMovie);
 
+// DELETE one movie
+router.delete('/:id', movieController.deleteMovie);
+
 // GET update movie form
 router.get('/:id/update', movieController.getUpdateMovie);
 
 // PUT update movie
 router.put('/:id/update', movieController.putUpdateMovie);
-
-// DELETE one movie
-router.delete('/:id', movieController.deleteMovie);
 
 // GET create movie form
 router.get('/create', movieController.getCreateMovie);
