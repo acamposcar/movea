@@ -8,18 +8,21 @@ const movieController = require('../controllers/movieController');
 router.get('/', movieController.index);
 
 // GET request for one movie
-router.get('/:id', movieController.get_movie);
+router.get('/:id', movieController.getMovie);
 
-// UPDATE one movie
-router.update('/:id', movieController.update_movie);
+// GET update movie form
+router.get('/:id/update', movieController.getUpdateMovie);
+
+// PUT update movie
+router.put('/:id/update', movieController.putUpdateMovie);
 
 // DELETE one movie
-router.delete('/:id', movieController.delete_movie);
+router.delete('/:id', movieController.deleteMovie);
 
-// GET new movie form
-router.post('/create', movieController.create_movie);
+// GET create movie form
+router.get('/create', movieController.getCreateMovie);
 
 // POST create movie
-router.post('/create', movieController.create_movie);
+router.post('/create', movieController.postCreateMovie);
 
 module.exports = router;

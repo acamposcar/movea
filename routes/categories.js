@@ -8,18 +8,21 @@ const categoryController = require('../controllers/categoryController');
 router.get('/', categoryController.index);
 
 // GET request for one category
-router.get('/:id', categoryController.get_category);
+router.get('/:id', categoryController.getCategory);
 
-// UPDATE one category
-router.update('/:id', categoryController.update_category);
+// GET update category form
+router.get('/:id/update', categoryController.getUpdateCategory);
+
+// PUT update category
+router.put('/:id/update', categoryController.putUpdateCategory);
 
 // DELETE one category
-router.delete('/:id', categoryController.delete_category);
+router.delete('/:id', categoryController.deleteCategory);
 
-// GET new category form
-router.post('/create', categoryController.create_category);
+// GET create category form
+router.get('/create', categoryController.getCreateCategory);
 
 // POST create category
-router.post('/create', categoryController.create_category);
+router.post('/create', categoryController.postCreateCategory);
 
 module.exports = router;
