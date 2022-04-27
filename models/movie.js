@@ -17,12 +17,12 @@ const MovieSchema = new Schema(
 // Virtual URL
 MovieSchema
   .virtual('url')
-  .get(() => `/catalog/movie/${this._id}`);
+  .get(() => `/movies/${this._id}`);
 
 // Virtual URL
 MovieSchema
   .virtual('image_url')
-  .get(() => `/assets/movie/${this._id}/${this.image}`);
+  .get(() => `/assets/movies/${this._id}/${this.image}`);
 
 // Export model
 module.exports = mongoose.model('Movie', MovieSchema);
