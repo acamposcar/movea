@@ -1,9 +1,6 @@
 /* eslint-disable consistent-return */
 
-const async = require('async');
-const { body, validationResult } = require('express-validator');
 const middleware = require('../middleware/middleware');
-const validation = require('../validation/validation');
 const Movie = require('../models/movie');
 const Category = require('../models/category');
 
