@@ -7,32 +7,38 @@
     <%- include('./partials/nav.ejs', {active: 'home' } ); %>
 
       <div class="container">
-        <h1>Trending Movies</h1>
-        <div class="featured">
+        <% if(error){ %>
+          <h1>Error loading dynamic content</h1>
+          <% } else if(listMovies.length==0){ %>
+            <h1>Movies not found</h1>
+            <% } else{ %>
+              <h1>Trending Movies</h1>
+              <div class="featured">
 
-          <div class="featured-title">
-            <%= listMovies[0].title %>
-          </div>
-          <button class="featured-button">Watch Now</button>
-        </div>
-
-        <h1>Top Rated</h1>
-        <div class="grid">
-          <% listMovies.forEach(function(movie){ %>
-            <a href=<%=movie.url %> class="card" style="--bg-image:url(<%= movie.image %>)" >
-                <span class="card-play material-icons">
-                  play_circle_filled
-                </span>
-                <div class="card-title">
-                  <%= movie.title %>
+                <div class="featured-title">
+                  <%= listMovies[0].title %>
                 </div>
-                <div class="card-year">
-                  <%= movie.year %>
-                </div>
+                <button class="featured-button">Watch Now</button>
+              </div>
 
-            </a>
-            <% }) %>
-        </div>
+              <h1>Top Rated</h1>
+              <div class="grid">
+                <% listMovies.forEach(function(movie){ %>
+                  <a href=<%=movie.url %> class="card" style="--bg-image:url(<%= movie.image %>)" >
+                      <span class="card-play material-icons">
+                        play_circle_filled
+                      </span>
+                      <div class="card-title">
+                        <%= movie.title %>
+                      </div>
+                      <div class="card-year">
+                        <%= movie.year %>
+                      </div>
+
+                  </a>
+                  <% }) %>
+                    <% } %>
+              </div>
 
 
 
