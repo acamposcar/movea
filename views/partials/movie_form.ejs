@@ -1,0 +1,48 @@
+<form method="POST" action="?_method=<%= method %>">
+    <h1>
+        <%= title %>
+    </h1>
+
+    <%- include('./form_errors.ejs', {errors: errors}); %>
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" value="<%=movie.title %>" required name="title" type="text">
+        </div>
+        <div class="form-group">
+            <label for="director">Director</label>
+            <input id="director" value="<%=movie.director %>" required name="director" type="text">
+        </div>
+        <div class="form-group">
+            <label for="year">Year</label>
+            <input id="year" value="<%=movie.year %>" required name="year" type="number" min="1500" max="2100">
+        </div>
+        <div class="form-group">
+            <label for="image">Image URL</label>
+            <input id="image" value="<%=movie.image %>" required name="image" type="url">
+        </div>
+        <div class="form-group">
+            <label for="synopsis">Synopsis</label>
+            <textarea id="synopsis" required name="synopsis" type="url" rows="4"><%=movie.synopsis %></textarea>
+        </div>
+        <label for="categories">Categories</label>
+        <div id="categories" class="checkbox-group">
+            <% categories.forEach(function(category){ %>
+
+                <div>
+                    <input id=<%=category._id %> value=<%= category._id %>
+                        <% if (category.checked==='true' ) { %> checked <% } %>
+                                name="category" type="checkbox">
+                                <label for="image">
+                                    <%= category.name %>
+                                </label>
+                </div>
+
+                <% }) %>
+        </div>
+        <div class="form-group">
+            <label for="password">Admin password</label>
+            <input id="password" required name="password" type="password">
+        </div>
+        <button type="submit">Save movie</button>
+</form>

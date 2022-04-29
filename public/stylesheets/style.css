@@ -1,8 +1,378 @@
+:root {
+    --text-color: hsl(0, 0%, 97%);
+    --text-color-grey: hsl(0, 0%, 73%);
+    --bg-color: hsl(0, 0%, 9%);
+    --primary: hsl(9, 69%, 54%);
+    --primary-active: hsl(9, 69%, 44%);
+    --primary-hover: hsl(9, 69%, 60%);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    border: 0px solid transparent;
+    font-family: Roboto, sans-serif;
+    line-height: 1.5;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 a {
-  color: #00B7FF;
+    color: var(--primary);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+a:active {
+    color: var(--primary-active);
+}
+
+li {
+    list-style-type: none;
+}
+
+li>a {
+    text-decoration: none;
+    /*color: hsl(0, 0%, calc(var(--lightness-offset, 0%) + 0%));*/
+    color: #808080;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+p {
+    /* font-size: clamp(1rem, 5vw, 1.5rem); */
+    max-width: 75ch;
+}
+
+/*
+h1 {
+  font-size: clamp(1.75rem, 4vw + 1rem, 3rem);
+}
+*/
+button {
+    border-radius: 1em;
+    border: none;
+    background-color: var(--primary);
+    color: var(--text-color);
+    padding: 1em 1.5em;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+button:active {
+    background-color: var(--primary-active);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    border-bottom: hsl(0, 0%, 19%) 1px solid;
+}
+
+header>.logo {
+    font-size: 1.7em;
+    font-weight: 700;
+}
+
+nav {
+    flex: 1;
+}
+
+.navbar {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+    padding: 1em;
+}
+
+.nav-link.active a,
+.nav-link a:hover {
+    color: var(--text-color);
+}
+
+.container {
+    margin: 0 auto;
+    width: min(100vw, 1200px);
+    padding: 2em;
+}
+
+.container-md {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.container-sm {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.featured {
+    position: relative;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    border-radius: 1em;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0439a942763827.584a11dc3fffe.png)
+}
+
+.featured::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    border-radius: 1em;
+    background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.836));
+}
+
+.featured-title {
+    font-size: 4em;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.featured-button {
+    align-self: flex-end;
+    z-index: 1;
+}
+
+.grid {
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 250px));
+}
+
+a.card {
+    text-decoration: none;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 1em;
+    transition: transform 200ms ease;
+    aspect-ratio: 9/14;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+    background-position: center;
+    background-size: cover;
+    background-image: var(--bg-image);
+    filter: brightness(0.85);
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    border-radius: 1em;
+    background-image: linear-gradient(transparent, black);
+}
+
+.card-title,
+.card-year,
+.card-play {
+    color: var(--text-color);
+    z-index: 1;
+
+}
+
+.card-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: transform 200ms ease;
+}
+
+
+.card-play {
+    position: relative;
+    align-self: center;
+    top: 45%;
+    font-size: 40px;
+    opacity: 0.7;
+    flex: 1;
+    transition: transform 200ms ease;
+}
+
+.card:hover .card-play,
+.card:hover .card-title {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* CATEGORIES */
+
+.categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+/* MOVIE DETAIL */
+
+.movie-detail {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+}
+
+
+.movie-detail-image {
+    width: 20vw;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.movie-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    z-index: 1;
+}
+
+.movie-director {
+    color: var(--text-color-grey);
+    margin-bottom: 2em;
+}
+
+.movie-synopsis {
+    color: var(--text-color-grey);
+    font-size: 0.9em;
+    margin-bottom: 2em;
+}
+
+.movie-update {
+    display: flex;
+    justify-content: right;
+    padding: 1em;
+    gap: 1em;
+    font-size: 0.9em;
+}
+
+.category {
+    background-color: var(--primary);
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    font-size: 0.75em;
+}
+
+.category:hover {
+    background-color: var(--primary-hover);
+}
+
+.category:active {
+    background-color: var(--primary-active);
+}
+
+/* FORM */
+
+label {
+    margin-bottom: 0.25em;
+    font-size: 1em;
+}
+
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5em;
+}
+
+.form-errors {
+    color: var(--primary);
+    margin-bottom: 1.5em;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    padding: 1em;
+    margin-bottom: 1.5em;
+}
+
+
+input {
+    padding: 0.5em 1em;
+    font-size: 16px;
+    color: black;
+    border-radius: 0.25em;
+    border: none;
+}
+
+textarea {
+    padding: 0.5em 1em;
+    font-size: inherit;
+    font-family: inherit;
+    color: black;
+    border-radius: 0.25em;
+    border: none;
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs'); %>
+
+  <body>
+
+
+    <%- include('./partials/nav.ejs', {active: '' } ); %>
+
+      <div class="container-sm">
+
+        <form method="POST" action="?_method=DELETE">
+
+          <h1>Delete: <%= movie.title %> (<%= movie.year %>)
+          </h1>
+
+          <%- include('./partials/form_errors.ejs', {errors: errors}); %>
+
+            <div class="form-group">
+              <label for="password">Admin password</label>
+              <input id="password" required name="password" type="password">
+            </div>
+            <button type="submit">Delete movie</button>
+        </form>
+      </div>
+  </body>
+
+</html>

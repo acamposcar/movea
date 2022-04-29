@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs'); %>
+
+  <body>
+    <%- include('./partials/nav.ejs', {active: '' } ); %>
+
+      <div class="container-md">
+
+        <div class="movie-detail">
+          <img class="movie-detail-image" src="<%= movie.image %>" alt="<%= movie.title %>">
+          <div class="movie-detail-info">
+            <h1 class="movie-title">
+              <%= movie.title %> (<%= movie.year %>)
+            </h1>
+            <div class="movie-director">
+              Directed by <%= movie.director %>
+            </div>
+            <p class="movie-synopsis">
+              <%= movie.synopsis %>
+            </p>
+            <div class="movie-categories">
+              <% movie.category.forEach(function(category){ %>
+                <a href=<%=category.url %> class="category">
+                  <div class="card-title">
+                    <%= category.name %>
+                  </div>
+                </a>
+                <% }) %>
+            </div>
+            <div class="movie-update">
+              <a href="<%=movie.url %>/update">Update movie</a>
+              <a href="<%=movie.url %>/delete">Delete movie</a>
+            </div>
+          </div>
+        </div>
+
+  </body>
+
+</html>

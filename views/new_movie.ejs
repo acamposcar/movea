@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs'); %>
+
+  <body>
+
+
+    <%- include('./partials/nav.ejs', {active: 'add' }); %>
+
+      <div class="container-sm">
+
+        <%- include('./partials/movie_form.ejs', {title: title, method: method, errors: errors}); %>
+      </div>
+  </body>
+
+</html>

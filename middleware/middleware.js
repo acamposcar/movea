@@ -17,37 +17,73 @@ exports.createUpdateMovie = [
 
   // Validate and sanitize fields.
   validation.newMovieValidator(),
+  validation.passwordValidator(),
   // Process request after validation and sanitization.
   async (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
-
     // Create a Book object with escaped/trimmed data and old id.
-    const movie = new Movie(
-      {
-        title: req.body.title,
-        director: req.body.director,
-        summary: req.body.summary,
-        year: req.body.year,
-        image: req.body.image,
-        category: req.body.category,
-      },
-    );
+    let movie;
+    if (req.method === 'PUT') {
+      // PUT method on update.
+      movie = new Movie(
+        {
+          title: req.body.title,
+          director: req.body.director,
+          synopsis: req.body.synopsis,
+          year: req.body.year,
+          image: req.body.image,
+          category: req.body.category,
+          _id: req.params.id, // necessary to update item
+        },
+      );
+    } else {
+      // POST method on create.
+      movie = new Movie(
+        {
+          title: req.body.title,
+          director: req.body.director,
+          synopsis: req.body.synopsis,
+          year: req.body.year,
+          image: req.body.image,
+          category: req.body.category,
+        },
+      );
+    }
 
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/error messages.
-
-      Category.find({}).exec((err, categoriesList) => {
-        if (err) return next(err);
+      try {
+        // Add .lean() to get a Javascipt object to be able to add checked property
+        const categories = await Category.find().lean();
 
         // Mark our selected categories as checked.
-        for (let i = 0; i < categoriesList.length; i++) {
-          if (movie.category.indexOf(categoriesList[i]._id) > -1) {
-            categoriesList[i].checked = 'true';
+        for (let i = 0; i < categories.length; i++) {
+          if (movie.category.indexOf(categories[i]._id) > -1) {
+            categories[i].checked = 'true';
           }
         }
-        res.render('movie_form', { categoriesList, movie, errors: errors.array() });
-      });
+        if (req.method === 'PUT') {
+        // PUT method on update.
+          res.render('new_movie', {
+            title: 'Update Movie',
+            categories,
+            movie,
+            errors: errors.array(),
+            method: 'PUT',
+          });
+        } else {
+          res.render('new_movie', {
+            title: 'Add Movie',
+            categories,
+            movie,
+            errors: errors.array(),
+            method: 'POST',
+          });
+        }
+      } catch (err) {
+        return next(err);
+      }
     } else {
       // Data from form is valid. Update the record.
       req.movie = movie;

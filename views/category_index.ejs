@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs'); %>
+
+  <body>
+    <%- include('./partials/nav.ejs', {active: 'categories' } ); %>
+      <div class="container-sm">
+        <h1>Categories</h1>
+        <div class="movie-categories">
+          <% listCategories.forEach(function(category){ %>
+            <a href=<%=category.url %> class="category">
+              <div class="card-title">
+                <%= category.name %>
+              </div>
+            </a>
+            <% }) %>
+        </div>
+
+      </div>
+
+
+  </body>
+
+</html>

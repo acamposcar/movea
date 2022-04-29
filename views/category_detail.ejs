@@ -4,21 +4,14 @@
 <%- include('./partials/head.ejs'); %>
 
   <body>
-    <%- include('./partials/nav.ejs', {active: 'home' } ); %>
+    <%- include('./partials/nav.ejs', {active: 'categories' } ); %>
+      <div class="container-md">
 
-      <div class="container">
-        <h1>Trending Movies</h1>
-        <div class="featured">
-
-          <div class="featured-title">
-            <%= listMovies[0].title %>
-          </div>
-          <button class="featured-button">Watch Now</button>
-        </div>
-
-        <h1>Top Rated</h1>
+        <h1>
+          <%= category.name %>
+        </h1>
         <div class="grid">
-          <% listMovies.forEach(function(movie){ %>
+          <% movies.forEach(function(movie){ %>
             <a href=<%=movie.url %> class="card" style="--bg-image:url(<%= movie.image %>)" >
                 <span class="card-play material-icons">
                   play_circle_filled
@@ -33,8 +26,6 @@
             </a>
             <% }) %>
         </div>
-
-
 
 
   </body>
