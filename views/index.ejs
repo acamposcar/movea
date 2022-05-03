@@ -13,13 +13,13 @@
             <h1>Movies not found</h1>
             <% } else{ %>
               <h1>Trending Movies</h1>
-              <div class="featured">
+              <a href="<%= listMovies[0].url %>" class="featured">
 
                 <div class="featured-title">
                   <%= listMovies[0].title %>
                 </div>
                 <button class="featured-button">Watch Now</button>
-              </div>
+              </a>
 
               <h1>Top Rated</h1>
               <div class="grid">
